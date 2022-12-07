@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang='en' class=''>
+
+<head>
+
+  <meta charset='UTF-8'>
+  <title>IoT Hanukia | Light you IoT Hanukia</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="dist/animate.min.css">
+<link rel="stylesheet" href="dist/font-awesome.css">
+  
+<link rel="stylesheet" href="dist/font-awesome.min.css">
+
+<link rel="stylesheet" href="dist/normalize.min.css">
+
+  <style class="INLINE_PEN_STYLESHEET_ID">
+    html {
+  box-sizing: border-box;
+}
+
+*, *::after, *::before {
+  box-sizing: inherit;
+}
+
+@viewport {
+width: device-width;
+zoom: 1.1;
+min-zoom: 0.4;
+max-zoom: 2;
+user-zoom: fixed;
+}
+
+
+@-webkit-keyframes glow {
+  0% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+  50% {
+    box-shadow: 0px 0px 14px 2px yellow;
+  }
+  100% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+}
+@-moz-keyframes glow {
+  0% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+  50% {
+    box-shadow: 0px 0px 14px 2px yellow;
+  }
+  100% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+}
+@keyframes glow {
+  0% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+  50% {
+    box-shadow: 0px 0px 14px 2px yellow;
+  }
+  100% {
+    box-shadow: 0px 0px 9px 1px yellow;
+  }
+}
+body {
+  background: #333;
+}
+
+.scene {
+  height: auto;
+  width: 650px;
+  margin: 0 auto;
+}
+.scene h1 {
+  text-align: center;
+  font-size: 5em;
+  margin-top: 1em;
+  font-family: Smokum;
+  color: #508FDD;
+  letter-spacing: 2px;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-animation: rubberBand 0.8s 0.3s;
+  -moz-animation: rubberBand 0.8s 0.3s;
+  animation: rubberBand 0.8s 0.3s;
+  text-shadow: -0.5px 0.5px 4px #4881c7;
+}
+.scene h2 {
+  text-align: center;
+  margin-top: -1em;
+  color: #38649b;
+  text-shadow: -0.5px 0.5px 1px #28486f;
+}
+.scene #menorah {
+  margin-left: 50%;
+  margin-top: 45%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -o-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: -10;
+}
+.scene .fire {
+  width: 1em;
+  position: absolute;
+  height: 2.3em;
+  background-image: -webkit-radial-gradient(50% 100%, circle, red 20%, orange 40%, yellow);
+  background-image: radial-gradient(  circle at 50% 100%, red 20%, orange 40%, yellow);
+  border-radius: 50%;
+  margin-top: -46em;
+  margin-left: 9.8em;
+  z-index: 200;
+  box-shadow: 0px 0px 9px 1px yellow;
+  -webkit-animation: glow 1s infinite linear;
+  -moz-animation: glow 1s infinite linear;
+  animation: glow 1s infinite linear;
+  opacity: 0;
+}
+.scene .two {
+  margin-left: 12.3em;
+  margin-top: -46.4em;
+}
+.scene .three {
+  margin-left: 14.5em;
+  margin-top: -46.3em;
+}
+.scene .four {
+  margin-left: 16.5em;
+  margin-top: -46.9em;
+}
+.scene .five {
+  margin-left: 19.7em;
+  margin-top: -48.9em;
+}
+.scene .six {
+  margin-left: 22.8em;
+  margin-top: -46.8em;
+}
+.scene .seven {
+  margin-left: 25.1em;
+  margin-top: -46.2em;
+}
+.scene .eight {
+  margin-left: 27.3em;
+  margin-top: -46.3em;
+}
+.scene .nine {
+  margin-left: 29.7em;
+  margin-top: -46em;
+}
+  </style>
+
+  
+
+</head>
+
+<body>
+  
+<div class="scene"><img id="menorah" src="dist/menorah3.png"/>
+  <div class="fire one" id="C8"></div>
+  <div class="fire two" id="C7"></div>
+  <div class="fire three" id="C6"></div>
+  <div class="fire four" id="C5"></div>
+  <div class="fire five" id="Shamash"></div>
+  <div class="fire six" id="C4"></div>
+  <div class="fire seven" id="C3"></div>
+  <div class="fire eight" id="C2"></div>
+  <div class="fire nine" id="C1"></div>
+</div>
+  
+<script src="dist/jquery.min.js"></script>
+<script src="dist/jquery-ui.min.js"></script>
+<script src="dist/velocity.min.js"></script>
+
+
+<script>
+ var candles = [ "C1", "C2", "C3", "C4", "Shamash", "C5", "C6", "C7", "C8" ];
+  
+ var intervalId = window.setInterval(function(){
+    getCandlesStatus();
+  }, 500);
+
+$(document).ready(function(){
+ 
+
+
+  getCandlesStatus();
+
+
+    $('.fire').click(function(){
+        id = $(this).attr('id')
+        if($(this).css("opacity")=="0"){
+            $(this).css("opacity","1")
+            light(id,"1")
+        }
+        else
+        {
+            $(this).css("opacity","0")
+            light(id,"0")
+        }
+
+    });
+
+
+
+
+});
+
+function light(candele,status)
+{
+  $.get("light?candle="+candele+"&status=" + status, function(data, status){
+    
+  });
+}
+
+
+
+function getCandlesStatus(){
+  $.each( candles, function( i, val ) {
+   $.get("status?candle=" + val, function(data, status){
+    $('#'+val).css("opacity",data)
+
+  });
+});
+}
+
+
+</script>
+
+</body>
+
+</html>
