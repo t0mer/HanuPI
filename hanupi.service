@@ -1,0 +1,17 @@
+[Unit]
+Description=Smart MEnorah
+After=network-online.target
+Wants=network-online.target systemd-networkd-wait-online.service
+StartLimitIntervalSec=5
+StartLimitBurst=5
+
+[Service]
+KillSignal=SIGINT
+WorkingDirectory=/opt/
+Type=simple
+User=pi
+ExecStart=/usr/bin/python3 /opt/hanupi.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
