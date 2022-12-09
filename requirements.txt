@@ -2,3 +2,6 @@ loguru
 fastapi
 uvicorn
 Jinja2
+sounddevice
+soundfile
+numpy

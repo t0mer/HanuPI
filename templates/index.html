@@ -15,6 +15,7 @@
 
 <link rel="stylesheet" href="dist/normalize.min.css">
 
+
   <style class="INLINE_PEN_STYLESHEET_ID">
     html {
   box-sizing: border-box;
@@ -22,6 +23,26 @@
 
 *, *::after, *::before {
   box-sizing: inherit;
+}
+
+.sidebar {
+height: 150px;
+width: 100px;
+position: fixed;
+top: 0;
+left: 0;
+padding-top: 10px;
+background-color: lightblue;
+}
+
+.sidebar div {
+padding: 6px;
+font-size: 20px;
+display: block;
+text-align: right;
+direction: rtl;
+border:1px solid silver;
+margin-top: 2px;
 }
 
 @viewport {
@@ -68,6 +89,7 @@ user-zoom: fixed;
 }
 body {
   background: #333;
+
 }
 
 .scene {
@@ -161,7 +183,12 @@ body {
 </head>
 
 <body>
-  
+  <div class="sidebar">
+    <div class="lightall">הדלק</div>
+    <div class="bless">הדלק וברך</div>
+    <div class="off">כבה נרות</div>
+    </div>
+    
 <div class="scene"><img id="menorah" src="dist/menorah3.png"/>
   <div class="fire one" id="C8"></div>
   <div class="fire two" id="C7"></div>
@@ -192,6 +219,23 @@ $(document).ready(function(){
 
   getCandlesStatus();
 
+
+  $('.bless').click(function(){
+
+    $.getJSON("/play", function(data) {});
+    $.getJSON("/light/all", function(data) {});
+
+  });
+
+
+  
+  $('.lightall').click(function(){
+    $.getJSON("/light/all", function(data) {});
+  });
+
+  $('.off').click(function(){
+    $.getJSON("/light/off", function(data) {});
+  });
 
     $('.fire').click(function(){
         id = $(this).attr('id')

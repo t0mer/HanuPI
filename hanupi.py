@@ -8,6 +8,11 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import sounddevice as sd
+import soundfile as sf
+
+filename = 'hanuka.wav'
+data, fs = sf.read(filename, dtype='float32') 
 
 def set_off():
     for candle in candles:
@@ -84,7 +89,24 @@ def light(request: Request,candle:str = "", status:str = ""):
         light_on(candle)
     else:
         light_off(candle)
-    
+
+@app.get('/play')
+def play(request: Request):
+    sd.play(data, fs)
+    status = sd.wait()  # Wait until file is done playing
+
+@app.get('/light/all')
+def light_all(request: Request):
+    set_off()
+    for candle in candles:
+        GPIO.output(candle, GPIO.HIGH)
+        time.sleep(2)
+
+@app.get('/light/off')
+def light_off(request: Request):
+    set_off()
+
+
 
 @app.get('/status')
 def status(request: Request,candle:str = ""):
@@ -110,6 +132,7 @@ def on_start():
         time.sleep(0.2)
     time.sleep(4)
     set_off()
+
 
 
 if __name__ == "__main__":
