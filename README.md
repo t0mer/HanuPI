@@ -25,3 +25,29 @@ HanuPi is Raspberry pi based smart Hanukia that cn be turned on using physical b
 * [PAM8403 Super mini digital power amplifier board](https://www.aliexpress.com/item/32846373616.html)
 * [8ohms speaker]()
 
+## Bringing it all together
+
+[![Raspberry PI Pinout](https://github.com/t0mer/HanuPI/blob/main/images/rp_pinout.png?raw=true "Raspberry PI Pinout")](https://github.com/t0mer/HanuPI/blob/main/images/rp_pinout.png?raw=true "Raspberry PI Pinout")
+
+### Connecting the candles (Ordering Right to Left)
+* Candle1 to 29 (GPIO 12)
+* Candle2 to 37 (GPIO 26)
+* Candle3 to 11 (GPIO 17)
+* Candle4 to 13 (GPIO 27)
+* Shamash to 31 (GPIO 6)
+* Candle5 to 15 (GPIO 22)
+* Candle6 to 16 (GPIO 23)
+* Candle7 to 22 (GPIO 25)
+* Candle8 to 18 (GPIO 24)
+All candles using common ground.
+
+### Connecting the Buttons
+* Button1 to 10 (GPIO UART0 RX)
+* Button1 to 8 (GPIO UART0 TX)
+Both buttons using common 3.3V (GPIO 1)
+
+### Connecting The amplifier
+* Ground
+* 5.5V
+* To the speaker
+* Using small PL to the speaker output.
