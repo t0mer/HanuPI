@@ -1,5 +1,5 @@
 # HanuPI
-HanuPi is Raspberry pi based smart Hanukia that cn be turned on using physical buttons or Web interface.
+HanuPi is Raspberry pi based smart Hanukia that can be turned on using physical buttons or Web interface.
 
 ## Features
 - 2 Candle lighting sequences using physical byttons.
